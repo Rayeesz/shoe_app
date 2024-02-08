@@ -103,7 +103,9 @@ class mainscreen extends StatelessWidget {
                   SizedBox(
                     width: 10,
                   ),
-                  Ref(image: "assets/OIP.jpg", text: "Nike", onpressed: () {}),
+                  Ref(image: "assets/OIP.jpg", text: "Nike", onpressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Men()));
+                  }),
                   SizedBox(
                     width: 10,
                   ),
