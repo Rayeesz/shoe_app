@@ -4,14 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:travel_app/function/function.dart';
 import 'package:travel_app/function/shoefunction.dart';
+import 'package:travel_app/function/shoewomen.dart';
+
 import 'package:travel_app/model/model.dart';
 import 'package:travel_app/model/shoemodel.dart';
+import 'package:travel_app/model/shoewomen.dart';
 import 'package:travel_app/widget/splash.dart';
 
 const save_keyname = "save logged in";
 void main() async {
   getAllCoustmer();
   getAllshoeDetils();
+  getAllWomenshoesDetils();
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
 
@@ -22,7 +26,11 @@ void main() async {
   if (!Hive.isAdapterRegistered(ShoeAdapter().typeId)) {
     Hive.registerAdapter(ShoeAdapter());
   }
+ if (!Hive.isAdapterRegistered(ShoeWomenAdapter().typeId)) {
+    Hive.registerAdapter(ShoeWomenAdapter());
+  }
 
+   
   runApp(const MyApp());
 }
 

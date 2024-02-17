@@ -3,9 +3,10 @@
 import 'package:flutter/material.dart';
 import 'package:travel_app/function/function.dart';
 import 'package:travel_app/model/model.dart';
-import 'package:travel_app/orders/buynow.dart';
 
-class editorders extends StatefulWidget {
+import 'package:travel_app/screens/men.dart';
+
+class Editorders extends StatefulWidget {
   final String name;
   var number;
   var adress;
@@ -13,7 +14,7 @@ class editorders extends StatefulWidget {
   var state;
   var city;
   int index;
-  editorders({
+  Editorders({super.key, 
     required this.index,
     required this.name,
     required this.number,
@@ -24,26 +25,26 @@ class editorders extends StatefulWidget {
   });
 
   @override
-  State<editorders> createState() => _editordersState();
+  State<Editorders> createState() => _EditordersState();
 }
 
-class _editordersState extends State<editorders> {
-  var _namecontroller = TextEditingController();
-  var _phonecontroller = TextEditingController();
-  var _addresscontroller = TextEditingController();
-  var _pincodecontroller = TextEditingController();
-  var _statecontroller = TextEditingController();
-  var _citycontroller = TextEditingController();
+class _EditordersState extends State<Editorders> {
+  var namecontroller = TextEditingController();
+  var phonecontroller = TextEditingController();
+  var addresscontroller = TextEditingController();
+  var pincodecontroller = TextEditingController();
+  var statecontroller = TextEditingController();
+  var citycontroller = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    _namecontroller = TextEditingController(text: widget.name);
-    _phonecontroller= TextEditingController(text:widget.number);
-    _addresscontroller= TextEditingController(text: widget.adress);
-    _pincodecontroller=TextEditingController(text: widget.pincode);
-    _statecontroller=  TextEditingController(text: widget.state);
-    _citycontroller=  TextEditingController(text: widget.city);
+    namecontroller = TextEditingController(text: widget.name);
+    phonecontroller= TextEditingController(text:widget.number);
+    addresscontroller= TextEditingController(text: widget.adress);
+    pincodecontroller=TextEditingController(text: widget.pincode);
+    statecontroller=  TextEditingController(text: widget.state);
+    citycontroller=  TextEditingController(text: widget.city);
   }
 
   @override
@@ -54,7 +55,7 @@ class _editordersState extends State<editorders> {
         leading: IconButton(
             onPressed: () {
               Navigator.of(context)
-                  .pop(MaterialPageRoute(builder: (context) => order()));
+                  .pop(MaterialPageRoute(builder: (context) =>  Men()));
             },
             icon: Icon(Icons.arrow_back)),
         backgroundColor: Color.fromARGB(255, 243, 147, 3),
@@ -69,7 +70,7 @@ class _editordersState extends State<editorders> {
             Padding(
               padding: const EdgeInsets.all(15.0),
               child: TextFormField(
-                controller: _namecontroller,
+                controller: namecontroller,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return "error";
@@ -88,7 +89,7 @@ class _editordersState extends State<editorders> {
             Padding(
               padding: const EdgeInsets.all(15.0),
               child: TextFormField(
-                controller: _phonecontroller,
+                controller: phonecontroller,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return "error";
@@ -107,7 +108,7 @@ class _editordersState extends State<editorders> {
             Padding(
               padding: const EdgeInsets.all(15.0),
               child: TextFormField(
-                controller: _addresscontroller,
+                controller: addresscontroller,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return "error";
@@ -126,7 +127,7 @@ class _editordersState extends State<editorders> {
             Padding(
               padding: const EdgeInsets.all(15.0),
               child: TextFormField(
-                controller: _pincodecontroller,
+                controller: pincodecontroller,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return "error";
@@ -145,7 +146,7 @@ class _editordersState extends State<editorders> {
             Padding(
               padding: const EdgeInsets.all(15.0),
               child: TextFormField(
-                controller: _statecontroller,
+                controller: statecontroller,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return "error";
@@ -164,7 +165,7 @@ class _editordersState extends State<editorders> {
             Padding(
               padding: const EdgeInsets.all(15.0),
               child: TextFormField(
-                controller: _citycontroller,
+                controller: citycontroller,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return "error";
@@ -202,12 +203,12 @@ class _editordersState extends State<editorders> {
   }
 
   updateall() async {
-    final name0 = _namecontroller.text;
-    final number0 = _phonecontroller.text;
-    final address0 = _addresscontroller.text;
-    final pincode0 = _pincodecontroller.text;
-    final state0 = _statecontroller.text;
-    final city0 = _citycontroller.text;
+    final name0 = namecontroller.text;
+    final number0 = phonecontroller.text;
+    final address0 = addresscontroller.text;
+    final pincode0 = pincodecontroller.text;
+    final state0 = statecontroller.text;
+    final city0 = citycontroller.text;
     if (name0.isEmpty ||
         number0.isEmpty ||
         address0.isEmpty ||

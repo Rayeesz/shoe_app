@@ -1,9 +1,9 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last, curly_braces_in_flow_control_structures
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last, curly_braces_in_flow_control_structures, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:travel_app/main.dart';
-import 'package:travel_app/screens/screenhome.dart';
+import 'package:travel_app/widget/screenhome.dart';
 
 class Loginscreen extends StatefulWidget {
   const Loginscreen({super.key});
@@ -13,9 +13,9 @@ class Loginscreen extends StatefulWidget {
 }
 
 class _LoginscreenState extends State<Loginscreen> {
-  final _usernamecontroller = TextEditingController();
-  final _passwordcontroller = TextEditingController();
-  final _formkey = GlobalKey<FormState>();
+  final usernamecontroller = TextEditingController();
+  final passwordcontroller = TextEditingController();
+  final formkey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +44,7 @@ class _LoginscreenState extends State<Loginscreen> {
         ),
       ),
       body: Form(
-        key: _formkey,
+        key: formkey,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -76,7 +76,7 @@ class _LoginscreenState extends State<Loginscreen> {
                   } else
                     return null;
                 },
-                controller: _usernamecontroller,
+                controller: usernamecontroller,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(
                         borderSide: BorderSide(),
@@ -93,7 +93,7 @@ class _LoginscreenState extends State<Loginscreen> {
                   } else
                     return null;
                 },
-                controller: _passwordcontroller,
+                controller: passwordcontroller,
                 obscureText: true,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(
@@ -108,7 +108,10 @@ class _LoginscreenState extends State<Loginscreen> {
               child: ElevatedButton(
                 onPressed: () {
                   checklogin(context);
-                  _formkey.currentState!.validate();
+                  if(formkey.currentState!.validate()){
+                    checklogin(context);
+                  }
+                  
                 },
                 child: Text(
                   "LOGIN",
@@ -126,13 +129,14 @@ class _LoginscreenState extends State<Loginscreen> {
   }
 
   checklogin(BuildContext context) async {
-    final _username = _usernamecontroller.text;
-    final _password = _passwordcontroller.text;
-    if (_username==_password ||_username.isEmpty ) {
-      final _shareprfs= await SharedPreferences.getInstance();
-        _shareprfs.setBool(save_keyname,true);
+    final username = usernamecontroller.text;
+    final password = passwordcontroller.text;
+    if (username==password &&username.isNotEmpty ) {
+      final shareprfs= await SharedPreferences.getInstance();
+        shareprfs.setBool(save_keyname,true);
 
 
+      
       Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (context) => ScreeenHome()));
     } else {

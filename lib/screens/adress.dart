@@ -1,25 +1,28 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last, camel_case_types, dead_code
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last, camel_case_types, dead_code, prefer_const_constructors_in_immutables
 
 import 'package:flutter/material.dart';
 import 'package:travel_app/function/function.dart';
 import 'package:travel_app/model/model.dart';
-import 'package:travel_app/orders/buynow.dart';
-class address extends StatefulWidget {
-  address({super.key});
+
+import 'package:travel_app/screens/men.dart';
+import 'package:travel_app/widget/screenhome.dart';
+class Address extends StatefulWidget {
+  Address({super.key});
 
   @override
-  State<address> createState() => _addressState();
+  State<Address> createState() => _AddressState();
 
-  final _namecontroller = TextEditingController();
-  final _phonecontroller = TextEditingController();
-  final _addresscontroller = TextEditingController();
-  final _pincodecontroller = TextEditingController();
-  final _statecontroller = TextEditingController();
-  final _citycontroller = TextEditingController();
-  final _formkey = GlobalKey<FormState>();
+  
 }
 
-class _addressState extends State<address> {
+class _AddressState extends State<Address> {
+  final namecontroller = TextEditingController();
+  final phonecontroller = TextEditingController();
+  final addresscontroller = TextEditingController();
+  final pincodecontroller = TextEditingController();
+  final statecontroller = TextEditingController();
+  final citycontroller = TextEditingController();
+  final formkey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,14 +31,14 @@ class _addressState extends State<address> {
         leading: IconButton(
             onPressed: () {
               Navigator.of(context)
-                  .pop(MaterialPageRoute(builder: (context) => order()));
+                  .pop(MaterialPageRoute(builder: (context) =>  Men()));
             },
             icon: Icon(Icons.arrow_back)),
         backgroundColor: Color.fromARGB(255, 243, 147, 3),
       ),
       body: SingleChildScrollView(
           child: Form(
-        key: widget._formkey,
+        key: formkey,
         child: Column(
           children: [
             SizedBox(
@@ -51,7 +54,7 @@ class _addressState extends State<address> {
                     return null;
                   }
                 },
-                controller: widget._namecontroller,
+                controller: namecontroller,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                       borderSide: BorderSide(),
@@ -63,7 +66,7 @@ class _addressState extends State<address> {
             Padding(
               padding: const EdgeInsets.all(15.0),
               child: TextFormField(
-                controller: widget._phonecontroller,
+                controller: phonecontroller,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return "error";
@@ -89,7 +92,7 @@ class _addressState extends State<address> {
                     return null;
                   }
                 },
-                controller: widget._addresscontroller,
+                controller: addresscontroller,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                       borderSide: BorderSide(),
@@ -108,7 +111,7 @@ class _addressState extends State<address> {
                     return null;
                   }
                 },
-                controller: widget._pincodecontroller,
+                controller: pincodecontroller,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                       borderSide: BorderSide(),
@@ -127,7 +130,7 @@ class _addressState extends State<address> {
                     return null;
                   }
                 },
-                controller: widget._statecontroller,
+                controller: statecontroller,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                       borderSide: BorderSide(),
@@ -146,7 +149,7 @@ class _addressState extends State<address> {
                     return null;
                   }
                 },
-                controller: widget._citycontroller,
+                controller: citycontroller,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                       borderSide: BorderSide(),
@@ -161,7 +164,17 @@ class _addressState extends State<address> {
                 color: Colors.orange,
                 child: ElevatedButton(
                   onPressed: () {
-                    saveaddress();
+                   
+                  
+                   if (
+                    formkey.currentState!.validate()
+                   ) {
+                      saveaddress();
+                      dilogbox();
+                      
+                   }
+                   
+                   
                   },
                   child: Text(
                     "Save Address",
@@ -177,12 +190,12 @@ class _addressState extends State<address> {
   }
 
   saveaddress() async {
-    final name =widget._namecontroller.text;
-    final number=widget._phonecontroller.text;
-    final address=widget._addresscontroller.text;
-    final pincode=widget._pincodecontroller.text;
-    final state= widget._statecontroller.text;
-    final city=widget._citycontroller.text;
+    final name =namecontroller.text;
+    final number=phonecontroller.text;
+    final address=addresscontroller.text;
+    final pincode=pincodecontroller.text;
+    final state= statecontroller.text;
+    final city=citycontroller.text;
     if (name.isEmpty||number.isEmpty||address.isEmpty||pincode.isEmpty||state.isEmpty||state.isEmpty||city.isEmpty) {
       return ;
     } 
@@ -192,8 +205,24 @@ class _addressState extends State<address> {
     final list=CoustmerDetils(name: name, number: number, address: address, pincode: pincode, state: state, city: city);
       
     addcoustmerDetils(list);
-     Navigator.pop(context);
+     Navigator.of(context)
+                  .pushReplacement(MaterialPageRoute(builder: (context) => ScreeenHome()));
 
+
+
+ 
   }
+  void dilogbox(){
+  showDialog(context: 
+  context, builder: (context)=>AlertDialog(
+    content: const Text("your order placed"),
+    actions: [TextButton(onPressed: (){
+      Navigator.pop(context);
+    }, child:Text("ok"))],
+
+  ));
+
+
+}
 
 }

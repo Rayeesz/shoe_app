@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:travel_app/model/model.dart';
-import 'package:travel_app/model/shoemodel.dart';
+
 
 ValueNotifier<List<CoustmerDetils>> coustmerlistnotifier = ValueNotifier([]);
 
@@ -20,9 +20,9 @@ getAllCoustmer() async {
   coustmerlistnotifier.notifyListeners();
 }
 
-deleteCoustmer(index) async {
+Future<void>deleteCoustmer(int index) async {
   final coustmerdb = await Hive.openBox<CoustmerDetils>("coustmer db");
-  coustmerdb.deleteAt(index);
+  await coustmerdb.deleteAt(index);
   getAllCoustmer();
 }
 

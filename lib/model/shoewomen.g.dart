@@ -1,38 +1,38 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'shoemodel.dart';
+part of 'shoewomen.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class ShoeAdapter extends TypeAdapter<Shoe> {
+class ShoeWomenAdapter extends TypeAdapter<ShoeWomen> {
   @override
-  final int typeId = 2;
+  final int typeId = 3;
 
   @override
-  Shoe read(BinaryReader reader) {
+  ShoeWomen read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return Shoe(
-      text: fields[0] as dynamic,
-      price: fields[1] as dynamic,
-      image: fields[2] as dynamic,
+    return ShoeWomen(
+      image: fields[1] as String,
+      price: fields[3] as String,
+      text: fields[2] as String,
     );
   }
 
   @override
-  void write(BinaryWriter writer, Shoe obj) {
+  void write(BinaryWriter writer, ShoeWomen obj) {
     writer
       ..writeByte(3)
-      ..writeByte(0)
-      ..write(obj.text)
       ..writeByte(1)
-      ..write(obj.price)
+      ..write(obj.image)
       ..writeByte(2)
-      ..write(obj.image);
+      ..write(obj.text)
+      ..writeByte(3)
+      ..write(obj.price);
   }
 
   @override
@@ -41,7 +41,7 @@ class ShoeAdapter extends TypeAdapter<Shoe> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is ShoeAdapter &&
+      other is ShoeWomenAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

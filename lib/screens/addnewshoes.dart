@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, no_leading_underscores_for_local_identifiers, sort_child_properties_last
+// ignore_for_file: prefer_const_constructors, no_leading_underscores_for_local_identifiers, sort_child_properties_last, use_key_in_widget_constructors, prefer_const_constructors_in_immutables, constant_identifier_names, camel_case_types, prefer_const_literals_to_create_immutables, unused_element
 
 import 'dart:io';
 
@@ -6,10 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'package:travel_app/function/shoefunction.dart';
+import 'package:travel_app/function/shoewomen.dart';
 
 import 'package:travel_app/model/shoemodel.dart';
-import 'package:travel_app/screens/mainscreen.dart';
+import 'package:travel_app/model/shoewomen.dart';
 
+import 'package:travel_app/widget/screenhome.dart';
 
 class Addshoes extends StatefulWidget {
   Addshoes({Key? key});
@@ -18,9 +20,12 @@ class Addshoes extends StatefulWidget {
   State<Addshoes> createState() => _AddshoesState();
 }
 
+enum database { MenDB, WomenDb }
+
 class _AddshoesState extends State<Addshoes> {
-  final _namecontroller = TextEditingController();
-  final _pricecontoller = TextEditingController();
+  final namecontroller = TextEditingController();
+  final pricecontoller = TextEditingController();
+  database selectedatabase = database.MenDB;
   File? _selectedimage;
 
   @override
@@ -30,12 +35,12 @@ class _AddshoesState extends State<Addshoes> {
         automaticallyImplyLeading: false,
         leading: IconButton(
             onPressed: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => mainscreen()));
+              Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (context) => ScreeenHome()));
             },
             icon: Icon(Icons.arrow_back)),
       ),
-      body:   Column(
+      body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           CircleAvatar(
@@ -46,6 +51,30 @@ class _AddshoesState extends State<Addshoes> {
           ),
           SizedBox(
             height: 10,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: DropdownButton<database>(
+                borderRadius: BorderRadius.all(Radius.circular(15)),
+                value: selectedatabase,
+                items: [
+                  DropdownMenuItem(
+                    child: Text("Men"),
+                    value: database.MenDB,
+                  ),
+                  DropdownMenuItem(
+                    child: Text("Women"),
+                    value: database.WomenDb,
+                  )
+                ],
+                onChanged: (value) {
+                  setState(() {
+                    selectedatabase = value!;
+                  });
+                }),
+          ),
+          SizedBox(
+            height: 20,
           ),
           Container(
             color: Colors.orange,
@@ -62,8 +91,11 @@ class _AddshoesState extends State<Addshoes> {
               ),
             ),
           ),
+          SizedBox(
+            height: 10,
+          ),
           TextFormField(
-            controller: _namecontroller,
+            controller: namecontroller,
             decoration: InputDecoration(
               filled: true,
               fillColor: Color.fromARGB(255, 246, 242, 242),
@@ -85,7 +117,7 @@ class _AddshoesState extends State<Addshoes> {
             height: 20,
           ),
           TextFormField(
-            controller: _pricecontoller,
+            controller: pricecontoller,
             maxLength: 5,
             keyboardType: TextInputType.phone,
             decoration: InputDecoration(
@@ -125,18 +157,30 @@ class _AddshoesState extends State<Addshoes> {
     );
   }
 
-
   void addbutton() async {
-    final _name = _namecontroller.text;
-    final _price = _pricecontoller.text;
-    if (_name.isEmpty || _price.isEmpty) {
-      return;
+    if (selectedatabase == database.MenDB) {
+      final _name = namecontroller.text;
+      final _price = pricecontoller.text;
+      if (_name.isEmpty || _price.isEmpty) {
+        return;
+      }
+
+      final _shoe =
+          Shoe(text: _name, price: _price, image: _selectedimage!.path);
+      addShoe(_shoe);
+      Navigator.push(context,MaterialPageRoute(builder: (context) => Addshoes()));
+    } else if (selectedatabase == database.WomenDb) {
+      final name = namecontroller.text;
+      final price = pricecontoller.text;
+      if (name.isEmpty || price.isEmpty) {
+        return;
+      }
+      final _womendata =
+          ShoeWomen(image: _selectedimage!.path, price: price, text: name);
+
+      addWomenshoe(_womendata);
+      Navigator.push(context,MaterialPageRoute(builder: (context) => Addshoes()));
     }
-    print('$_name $_price');
-    final _shoe = Shoe(text: _name, price: _price, image: _selectedimage!.path);
-    addShoe(_shoe);
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => Addshoes()));
   }
 
   Future _pickImageFromGallery() async {

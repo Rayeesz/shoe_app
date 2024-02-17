@@ -4,9 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:travel_app/function/shoefunction.dart';
 import 'package:travel_app/model/shoemodel.dart';
 
-
-import 'package:travel_app/orders/buynow.dart';
-import 'package:travel_app/screens/screenhome.dart';
+import 'package:travel_app/screens/buynow.dart';
+import 'package:travel_app/widget/screenhome.dart';
 
 class Men extends StatefulWidget {
   const Men({Key? key});
@@ -31,10 +30,12 @@ class _MenState extends State<Men> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-         leading: IconButton(onPressed: () {
-          Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ScreeenHome()));
-        }, icon: Icon(Icons.arrow_back)), 
-        
+        leading: IconButton(
+            onPressed: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => ScreeenHome()));
+            },
+            icon: Icon(Icons.arrow_back)),
         backgroundColor: Colors.black,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -111,10 +112,13 @@ class _MenState extends State<Men> {
                       child: Ref(
                           onpressed: () {
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => order()));
+                                builder: (context) => Order(
+                                    name: shoe.text,
+                                    price: shoe.price,
+                                    imagepath: shoe.image)));
                           },
-                          text: shoe.text ?? "shoe",
-                          price: shoe.price ?? "2500",
+                          text: shoe.text,
+                          price: shoe.price,
                           image: shoes[index]),
                     );
                   },
@@ -125,8 +129,6 @@ class _MenState extends State<Men> {
           ),
         ],
       ),
-      
-      
     );
   }
 }

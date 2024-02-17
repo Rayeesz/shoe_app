@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:travel_app/main.dart';
 import 'package:travel_app/screens/loginscreen.dart';
-import 'package:travel_app/screens/screenhome.dart';
+import 'package:travel_app/widget/screenhome.dart';
 
 class spalash extends StatefulWidget {
   const spalash({super.key});
@@ -36,8 +36,8 @@ class _spalashState extends State<spalash> {
 
   }
   checkLogin()async{
-    final _shareprfs=await SharedPreferences.getInstance();
-      final loggin=  _shareprfs.getBool(save_keyname);
+    final shareprfs=await SharedPreferences.getInstance();
+      final loggin=  shareprfs.getBool(save_keyname);
         if(loggin==null||loggin ==false){
           gotologin();
         }

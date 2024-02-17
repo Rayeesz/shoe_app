@@ -1,10 +1,13 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_unnecessary_containers, sort_child_properties_last, no_leading_underscores_for_local_identifiers
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_unnecessary_containers, sort_child_properties_last
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:travel_app/navbar/Men.dart';
-import 'package:travel_app/navbar/women.dart';
+import 'package:travel_app/screens/men.dart';
+
+
 import 'package:travel_app/screens/loginscreen.dart';
+import 'package:travel_app/screens/women.dart';
+
 
 class Navbar extends StatefulWidget {
   const Navbar({super.key});
@@ -31,8 +34,7 @@ class _NavbarState extends State<Navbar> {
             onTap: () {
               Navigator.push(
                   context, MaterialPageRoute(builder: (context) => Men()));
-              //  Navigator.push(context,
-              // MaterialPageRoute(builder: (context) =>  ScreeenHome()));
+   
             },
             trailing: Icon(Icons.boy),
           ),
@@ -40,7 +42,7 @@ class _NavbarState extends State<Navbar> {
             title: Text("Women", style: TextStyle(color: Colors.white)),
             onTap: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const women()));
+                  MaterialPageRoute(builder: (context) => Women ()));
             },
             trailing: Icon(Icons.woman),
           ),
@@ -73,8 +75,8 @@ class _NavbarState extends State<Navbar> {
   }
 
   logout() async {
-    final _shareprfs = await SharedPreferences.getInstance();
+    final shareprfs = await SharedPreferences.getInstance();
 
-    _shareprfs.clear();
+    shareprfs.clear();
   }
 }

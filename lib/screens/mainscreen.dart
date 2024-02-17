@@ -1,21 +1,37 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, avoid_unnecessary_containers, sort_child_properties_last, camel_case_types
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, avoid_unnecessary_containers, sort_child_properties_last, camel_case_types, must_be_immutable, non_constant_identifier_names
 
 import 'package:banner_carousel/banner_carousel.dart';
 
 import 'package:flutter/material.dart';
-import 'package:travel_app/navbar/Men.dart';
-import 'package:travel_app/navbar/drawer.dart';
-import 'package:travel_app/navbar/women.dart';
+import 'package:travel_app/function/shoefunction.dart';
+import 'package:travel_app/function/shoewomen.dart';
 
-class mainscreen extends StatelessWidget {
-  const mainscreen({super.key});
+import 'package:travel_app/model/shoemodel.dart';
+import 'package:travel_app/model/shoewomen.dart';
+
+import 'package:travel_app/screens/women.dart';
+import 'package:travel_app/widget/drawer.dart';
+import 'package:travel_app/screens/men.dart';
+
+class Mainscreen extends StatelessWidget {
+  Mainscreen({super.key});
+  List shoes = [
+    "assets/nike4.jpeg",
+    "assets/new b2.jpeg",
+    "assets/adidas5.jpeg",
+    "assets/adidas4.jpeg",
+    "assets/new b2.jpeg",
+    "assets/nike.jpg",
+    "assets/OIP (1).jpg",
+    " assets/puma1.jpeg"
+  ];
+  int index = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: Navbar(),
       appBar: AppBar(
-        
         backgroundColor: Colors.black,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -78,8 +94,9 @@ class mainscreen extends StatelessWidget {
             SizedBox(
               height: 10,
             ),
-            Container(color: Colors.grey,
-            width: double.infinity,
+            Container(
+                color: Colors.grey,
+                width: double.infinity,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
@@ -90,48 +107,70 @@ class mainscreen extends StatelessWidget {
                     ],
                   ),
                 )),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  Ref(
-                      image: "assets/OIP (1).jpg",
-                      text: "adidas",
-                      onpressed: () {
-                               Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Men()));
-                      }),
-                  SizedBox(
-                    width: 10,
+            Row(
+              children: [
+                Expanded(
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: ValueListenableBuilder(
+                        valueListenable: shoedetilsnoti,
+                        builder: (BuildContext ctx, List<Shoe> Shoelists,
+                            Widget? child) {
+                          return Row(
+                            children: [
+                              Row(
+                                children: Shoelists.map((shoe) {
+                                  return Ref(
+                                    image: shoes[index++],
+                                    text: shoe.text,
+                                    onpressed: () {
+                                      Navigator.of(context)
+                                          .push(MaterialPageRoute(
+                                        builder: (context) => Men(),
+                                      ));
+                                    },
+                                  );
+                                }).toList(),
+                              ),
+                              Row(
+                                children: [
+                                  Ref(
+                                      image: "assets/OIP (1).jpg",
+                                      text: "adidas",
+                                      onpressed: () {
+                                        Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                                builder: (context) => Men()));
+                                      }),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Ref(
+                                      image: "assets/OIP.jpg",
+                                      text: "Nike",
+                                      onpressed: () {
+                                        Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                                builder: (context) => Men()));
+                                      }),
+                                  SizedBox(
+                                    width: 10,
+                                  )
+                                ],
+                              ),
+                            ],
+                          );
+                        }),
                   ),
-                  Ref(image: "assets/OIP.jpg", text: "Nike", onpressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Men()));
-                  }),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Ref(
-                      image: "assets/OIP (2).jpg",
-                      text: "New balance",
-                      onpressed: () {
-                               Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Men()));
-                      }),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Ref(
-                      image: "assets/OIP (3).jpg",
-                      text: "Jordan",
-                      onpressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Men()));
-                      }),
-                ],
-              ),
+                ),
+              ],
             ),
             SizedBox(
               height: 20,
             ),
-            Container(color: Colors.grey,
-            width: double.infinity,
+            Container(
+                color: Colors.grey,
+                width: double.infinity,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
@@ -144,39 +183,67 @@ class mainscreen extends StatelessWidget {
                 )),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
-              child: Row(
-                 children: [
-                  Ref(
-                      image: "assets/puma2.jpeg",
-                      text: "puma",
-                      onpressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>women()));
-                      },),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Ref(image: "assets/adidas5.jpeg", text: "adidas", onpressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>women()));
-                  }),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Ref(
-                      image: "assets/new b2.jpeg",
-                      text: "New balance",
-                      onpressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>women()));
-                      }),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Ref(
-                      image: "assets/puma1.jpeg",
-                      text: "puma",
-                      onpressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>women()));
-                      }),
-                ],
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: ValueListenableBuilder(
+                    valueListenable: ShoeWomenlist,
+                    builder: (BuildContext ctx, List<ShoeWomen> Shoewomenlist,
+                        Widget? child) {
+                      return Row(
+                        children: [
+                          Row(
+                            children: Shoewomenlist.map((shoe) {
+                              return Ref(
+                                image: shoes[index++],
+                                text: shoe.text,
+                                onpressed: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => Women(),
+                                  ));
+                                },
+                              );
+                            }).toList(),
+                          ),
+                          Row(
+                            children: [
+                              Ref(
+                                  image: "assets/OIP (1).jpg",
+                                  text: "adidas",
+                                  onpressed: () {
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (context) => Women()));
+                                  }),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Ref(
+                                  image: "assets/OIP.jpg",
+                                  text: "Nike",
+                                  onpressed: () {
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (context) => Women()));
+                                  }),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Ref(
+                                  image: "assets/puma1.jpeg",
+                                  text: "Nike",
+                                  onpressed: () {
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (context) => Women()));
+                                  }),
+                              SizedBox(
+                                width: 10,
+                              ),
+                            ],
+                          ),
+                        ],
+                      );
+                    }),
               ),
             ),
             SizedBox(
@@ -207,16 +274,12 @@ class mainscreen extends StatelessWidget {
 class Ref extends StatelessWidget {
   final String text;
   final String image;
-   final VoidCallback onpressed;
-
-  
-
+  final VoidCallback onpressed;
   const Ref({
     Key? key,
     required this.image,
     required this.text,
-     required this.onpressed, 
-    
+    required this.onpressed,
   }) : super(key: key);
 
   @override

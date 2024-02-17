@@ -2,29 +2,28 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:travel_app/navbar/Men.dart';
 
 import 'package:travel_app/screens/cart.dart';
-
+import 'package:travel_app/screens/mainscreen.dart';
 import 'package:travel_app/screens/orders.dart';
 
 import 'package:travel_app/screens/user.dart';
 
 
-class MenNavi extends StatefulWidget {
-  const MenNavi({super.key});
+class ScreeenHome extends StatefulWidget {
+  const ScreeenHome({super.key});
 
   @override
-  State<MenNavi> createState() => _MenNaviState();
+  State<ScreeenHome> createState() => _ScreeenHomeState();
 }
 
-class _MenNaviState extends State<MenNavi> {
+class _ScreeenHomeState extends State<ScreeenHome> {
   int _currentSelectIndex = 0;
   final _pages = [
-  Men(),
+  Mainscreen(),
  Orders() ,
- cart(price: '', text: '',),
-  user(),
+ Cart(price: "", text: "", imagePath: ""),
+  User(),
    ];
   @override
   Widget build(BuildContext context) {
