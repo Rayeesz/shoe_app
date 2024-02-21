@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:travel_app/function/shoefunction.dart';
+
 import 'package:travel_app/model/shoewomen.dart';
 
 ValueNotifier<List<ShoeWomen>> ShoeWomenlist = ValueNotifier([]);
@@ -17,6 +17,6 @@ getAllWomenshoesDetils() async {
   final shoeWomenDb = await Hive.openBox<ShoeWomen>("shoe Women db");
   ShoeWomenlist.value.clear();
   ShoeWomenlist.value.addAll(shoeWomenDb.values);
-  print(ShoeWomenlist.value);
+  
   ShoeWomenlist.notifyListeners();
 }

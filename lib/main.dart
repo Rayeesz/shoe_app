@@ -2,9 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:travel_app/function/cartfunction.dart';
 import 'package:travel_app/function/function.dart';
 import 'package:travel_app/function/shoefunction.dart';
 import 'package:travel_app/function/shoewomen.dart';
+import 'package:travel_app/model/cartmodel.dart';
 
 import 'package:travel_app/model/model.dart';
 import 'package:travel_app/model/shoemodel.dart';
@@ -16,6 +18,7 @@ void main() async {
   getAllCoustmer();
   getAllshoeDetils();
   getAllWomenshoesDetils();
+  getAllCart();
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
 
@@ -29,7 +32,10 @@ void main() async {
  if (!Hive.isAdapterRegistered(ShoeWomenAdapter().typeId)) {
     Hive.registerAdapter(ShoeWomenAdapter());
   }
-
+  if (!Hive.isAdapterRegistered(CartModelAdapter().typeId)) {
+    Hive.registerAdapter(CartModelAdapter());
+  }
+  
    
   runApp(const MyApp());
 }

@@ -14,18 +14,8 @@ import 'package:travel_app/widget/drawer.dart';
 import 'package:travel_app/screens/men.dart';
 
 class Mainscreen extends StatelessWidget {
-  Mainscreen({super.key});
-  List shoes = [
-    "assets/nike4.jpeg",
-    "assets/new b2.jpeg",
-    "assets/adidas5.jpeg",
-    "assets/adidas4.jpeg",
-    "assets/new b2.jpeg",
-    "assets/nike.jpg",
-    "assets/OIP (1).jpg",
-    " assets/puma1.jpeg"
-  ];
-  int index = 0;
+  const Mainscreen({super.key});
+
 
   @override
   Widget build(BuildContext context) {
@@ -121,7 +111,7 @@ class Mainscreen extends StatelessWidget {
                               Row(
                                 children: Shoelists.map((shoe) {
                                   return Ref(
-                                    image: shoes[index++],
+                                    image: shoe.image,
                                     text: shoe.text,
                                     onpressed: () {
                                       Navigator.of(context)
@@ -194,7 +184,7 @@ class Mainscreen extends StatelessWidget {
                           Row(
                             children: Shoewomenlist.map((shoe) {
                               return Ref(
-                                image: shoes[index++],
+                                image: shoe.image,
                                 text: shoe.text,
                                 onpressed: () {
                                   Navigator.of(context).push(MaterialPageRoute(

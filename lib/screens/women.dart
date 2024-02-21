@@ -8,18 +8,7 @@ import 'package:travel_app/model/shoewomen.dart';
 import 'package:travel_app/screens/buynow.dart';
 
 class Women extends StatelessWidget {
-  Women({super.key});
-
-  final List shoes = [
-    "assets/nike4.jpeg",
-    "assets/new b2.jpeg",
-    "assets/adidas5.jpeg",
-    "assets/adidas4.jpeg",
-    "assets/new b2.jpeg",
-    "assets/nike.jpg",
-    "assets/OIP (1).jpg",
-    " assets/puma1.jpeg"
-  ];
+  const Women({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -108,7 +97,7 @@ class Women extends StatelessWidget {
                           },
                           text: shoe.text,
                           price: shoe.price,
-                          image: shoes[index]),
+                          image: shoe.image),
                     );
                   },
                 );

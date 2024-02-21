@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers, sort_child_properties_last, sized_box_for_whitespace, prefer_const_literals_to_create_immutables, camel_case_types, unnecessary_string_interpolations
 import 'package:flutter/material.dart';
+import 'package:travel_app/function/cartfunction.dart';
+import 'package:travel_app/model/cartmodel.dart';
 import 'package:travel_app/screens/adress.dart';
 
 import 'package:travel_app/screens/cart.dart';
@@ -197,9 +199,11 @@ class Order extends StatelessWidget {
         focusColor: Colors.lightGreenAccent,
         backgroundColor: const Color.fromARGB(255, 253, 246, 246),
         onPressed: () {
+          addcart(CartModel(image: imagepath, price: price, text: name));
+          
           Navigator.of(context).push(MaterialPageRoute(
               builder: (context) =>
-                  Cart(price: name, text: price, imagePath: imagepath)));
+                  Cart()));
         },
         child: Icon(
           Icons.shopping_cart,

@@ -1,0 +1,13 @@
+import 'package:hive_flutter/hive_flutter.dart';
+part 'cartmodel.g.dart';
+
+@HiveType(typeId: 4)
+class CartModel {
+  @HiveField(0)
+  final String text;
+  @HiveField(1)
+  final String price;
+  @HiveField(2)
+  final String image;
+  CartModel({required this.image, required this.price, required this.text});
+}

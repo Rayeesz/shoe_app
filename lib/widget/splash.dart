@@ -16,37 +16,39 @@ class spalash extends StatefulWidget {
 class _spalashState extends State<spalash> {
   @override
   void initState() {
-   
     super.initState();
     gotologin();
     checkLogin();
   }
+
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child:Container(child: Image.asset("assets/Untitled Project (4).jpg",),
-        width: 400,) ,
+        child: Container(
+          child: Image.asset(
+            "assets/Untitled Project (4).jpg",
+          ),
+          width: 400,
+        ),
       ),
       backgroundColor: Colors.black,
     );
   }
-  gotologin()async{
-   await Future.delayed(Duration(seconds: 3));
-  Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>Loginscreen()));
 
-  }
-  checkLogin()async{
-    final shareprfs=await SharedPreferences.getInstance();
-      final loggin=  shareprfs.getBool(save_keyname);
-        if(loggin==null||loggin ==false){
-          gotologin();
-        }
-        else{
-           Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>ScreeenHome()));
-
-        }
-
+  gotologin() async {
+    await Future.delayed(Duration(seconds: 3));
+    Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => Loginscreen()));
   }
 
+  checkLogin() async {
+    final shareprfs = await SharedPreferences.getInstance();
+    final loggin = shareprfs.getBool(save_keyname);
+    if (loggin == null || loggin == false) {
+      gotologin();
+    } else {
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => ScreeenHome()));
+    }
+  }
 }
- 

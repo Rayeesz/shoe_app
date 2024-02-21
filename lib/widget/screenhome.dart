@@ -22,7 +22,7 @@ class _ScreeenHomeState extends State<ScreeenHome> {
   final _pages = [
   Mainscreen(),
  Orders() ,
- Cart(price: "", text: "", imagePath: ""),
+ Cart(),
   User(),
    ];
   @override

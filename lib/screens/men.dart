@@ -15,17 +15,7 @@ class Men extends StatefulWidget {
 }
 
 class _MenState extends State<Men> {
-  List shoes = [
-    "assets/nike4.jpeg",
-    "assets/new b2.jpeg",
-    "assets/adidas5.jpeg",
-    "assets/adidas4.jpeg",
-    "assets/new b2.jpeg",
-    "assets/nike.jpg",
-    "assets/OIP (1).jpg",
-    " assets/puma1.jpeg"
-  ];
-
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -119,7 +109,7 @@ class _MenState extends State<Men> {
                           },
                           text: shoe.text,
                           price: shoe.price,
-                          image: shoes[index]),
+                          image: shoe.image ?? ""),
                     );
                   },
                   itemCount: shoelist.length,
