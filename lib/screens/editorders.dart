@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:travel_app/function/function.dart';
-import 'package:travel_app/model/model.dart';
+import 'package:travel_app/model/model/model.dart';
 
 import 'package:travel_app/screens/men.dart';
 

@@ -1,12 +1,14 @@
 // ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers, sort_child_properties_last, sized_box_for_whitespace, prefer_const_literals_to_create_immutables, camel_case_types, unnecessary_string_interpolations
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:travel_app/function/cartfunction.dart';
-import 'package:travel_app/model/cartmodel.dart';
+import 'package:travel_app/model/cartmodel/cartmodel.dart';
 import 'package:travel_app/screens/adress.dart';
 
 import 'package:travel_app/screens/cart.dart';
 
-class Order extends StatelessWidget {
+class Order extends StatefulWidget {
   final String name;
   final String price;
   final String imagepath;
@@ -17,6 +19,11 @@ class Order extends StatelessWidget {
     required this.imagepath,
   });
 
+  @override
+  State<Order> createState() => _OrderState();
+}
+
+class _OrderState extends State<Order> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,7 +57,7 @@ class Order extends StatelessWidget {
               child: Row(
                 children: [
                   Text(
-                    "$name",
+                    "${widget.name}",
                     style: TextStyle(
                         fontSize: 25,
                         color: Colors.black,
@@ -59,7 +66,7 @@ class Order extends StatelessWidget {
                   ),
                   SizedBox(width: 350),
                   Text(
-                    "₹$price",
+                    "₹${widget.price}",
                     style: TextStyle(
                         fontSize: 25,
                         color: Color.fromARGB(255, 235, 143, 5),
@@ -199,11 +206,13 @@ class Order extends StatelessWidget {
         focusColor: Colors.lightGreenAccent,
         backgroundColor: const Color.fromARGB(255, 253, 246, 246),
         onPressed: () {
-          addcart(CartModel(image: imagepath, price: price, text: name));
+          
+          addcart(CartModel(image: widget.imagepath, price: widget.price, text: widget.name));
           
           Navigator.of(context).push(MaterialPageRoute(
               builder: (context) =>
                   Cart()));
+                 
         },
         child: Icon(
           Icons.shopping_cart,

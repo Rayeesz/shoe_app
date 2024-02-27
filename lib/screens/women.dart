@@ -3,15 +3,20 @@
 import 'package:flutter/material.dart';
 
 import 'package:travel_app/function/shoewomen.dart';
+import 'package:travel_app/model/shoewomenmodel/shoewomen.dart';
 
-import 'package:travel_app/model/shoewomen.dart';
+
 import 'package:travel_app/screens/buynow.dart';
+import 'package:travel_app/screens/piechart.dart';
 
 class Women extends StatelessWidget {
   const Women({super.key});
 
   @override
   Widget build(BuildContext context) {
+    getAllWomenshoesDetils();
+
+    List<int> totalwomen=[];
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
@@ -83,6 +88,10 @@ class Women extends StatelessWidget {
                   itemCount: shoewomenlist.length,
                   itemBuilder: (context, index) {
                     final shoe = shoewomenlist[index];
+                    totalwomen.add(int.parse(shoe.price));
+                    double total=totalwomen.reduce((value, element) => value+element).toDouble();
+                    Chart.womenvalue=total;
+            
                     return Padding(
                       padding: const EdgeInsets.only(
                         left: 30,
@@ -127,7 +136,7 @@ class Ref extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: onPressed,
       child: Row(
         children: [
           Card(

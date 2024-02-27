@@ -1,7 +1,9 @@
 // ignore_for_file: prefer_const_constructors, camel_case_types, avoid_unnecessary_containers, sort_child_properties_last, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+
 import 'package:travel_app/screens/addnewshoes.dart';
+import 'package:travel_app/screens/piechart.dart';
 
 class User extends StatelessWidget {
   const User({super.key});
@@ -37,9 +39,13 @@ class User extends StatelessWidget {
                   Container(
                       color: Colors.orange,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (ctx) => PieChartPage()));
+                        },
                         child: Text(
-                          "Edit profile",
+                          "pie chart",
                           style: TextStyle(color: Colors.white),
                         ),
                         style: ButtonStyle(

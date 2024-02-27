@@ -51,4 +51,5 @@ class _spalashState extends State<spalash> {
           MaterialPageRoute(builder: (context) => ScreeenHome()));
     }
   }
+  
 }

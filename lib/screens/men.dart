@@ -2,9 +2,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:travel_app/function/shoefunction.dart';
-import 'package:travel_app/model/shoemodel.dart';
+import 'package:travel_app/model/shoemen/shoemodel.dart';
+
+
 
 import 'package:travel_app/screens/buynow.dart';
+import 'package:travel_app/screens/piechart.dart';
 import 'package:travel_app/widget/screenhome.dart';
 
 class Men extends StatefulWidget {
@@ -15,9 +18,12 @@ class Men extends StatefulWidget {
 }
 
 class _MenState extends State<Men> {
- 
+  List<int> mentotal = [];
+
   @override
   Widget build(BuildContext context) {
+    getAllshoeDetils();
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -95,6 +101,12 @@ class _MenState extends State<Men> {
                   ),
                   itemBuilder: (context, index) {
                     final shoe = shoelist[index];
+                    mentotal.add(int.parse(shoe.price));
+                    double total = mentotal
+                        .reduce((value, element) => value + element)
+                        .toDouble();
+                    Chart.menvalue = total;
+
                     return Padding(
                       padding: const EdgeInsets.only(
                         left: 30,
@@ -109,7 +121,7 @@ class _MenState extends State<Men> {
                           },
                           text: shoe.text,
                           price: shoe.price,
-                          image: shoe.image ?? ""),
+                          image: shoe.image),
                     );
                   },
                   itemCount: shoelist.length,

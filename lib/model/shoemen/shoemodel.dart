@@ -6,11 +6,11 @@ import 'package:hive/hive.dart';
 @HiveType(typeId: 2)
 class Shoe {
   @HiveField(0)
-  var text;
+  final String text;
   @HiveField(1)
-  var price;
+  final String price;
   @HiveField(2)
-  dynamic image;
+  final String image;
   Shoe({required this.text, required this.price, required this.image});
 }
 

@@ -5,9 +5,12 @@ import 'package:banner_carousel/banner_carousel.dart';
 import 'package:flutter/material.dart';
 import 'package:travel_app/function/shoefunction.dart';
 import 'package:travel_app/function/shoewomen.dart';
+import 'package:travel_app/model/shoemen/shoemodel.dart';
 
-import 'package:travel_app/model/shoemodel.dart';
-import 'package:travel_app/model/shoewomen.dart';
+
+
+
+import 'package:travel_app/model/shoewomenmodel/shoewomen.dart';
 
 import 'package:travel_app/screens/women.dart';
 import 'package:travel_app/widget/drawer.dart';

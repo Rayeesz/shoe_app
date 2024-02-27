@@ -2,7 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:travel_app/model/shoemodel.dart';
+import 'package:travel_app/model/shoemen/shoemodel.dart';
+
+
 ValueNotifier<List<Shoe>> shoedetilsnoti = ValueNotifier([]);
 Future<void> addShoe(Shoe value) async {
   final shoeDb = await Hive.openBox<Shoe>("shoedb");

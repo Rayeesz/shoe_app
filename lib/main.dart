@@ -2,23 +2,20 @@
 
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:travel_app/function/cartfunction.dart';
-import 'package:travel_app/function/function.dart';
-import 'package:travel_app/function/shoefunction.dart';
-import 'package:travel_app/function/shoewomen.dart';
-import 'package:travel_app/model/cartmodel.dart';
 
-import 'package:travel_app/model/model.dart';
-import 'package:travel_app/model/shoemodel.dart';
-import 'package:travel_app/model/shoewomen.dart';
+import 'package:travel_app/model/cartmodel/cartmodel.dart';
+
+import 'package:travel_app/model/model/model.dart';
+import 'package:travel_app/model/shoemen/shoemodel.dart';
+
+
+
+import 'package:travel_app/model/shoewomenmodel/shoewomen.dart';
 import 'package:travel_app/widget/splash.dart';
 
 const save_keyname = "save logged in";
 void main() async {
-  getAllCoustmer();
-  getAllshoeDetils();
-  getAllWomenshoesDetils();
-  getAllCart();
+  
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
 

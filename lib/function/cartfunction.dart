@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:travel_app/function/function.dart';
-import 'package:travel_app/model/cartmodel.dart';
+import 'package:travel_app/model/cartmodel/cartmodel.dart';
 
 ValueNotifier<List<CartModel>> cartListnoti = ValueNotifier([]);
 

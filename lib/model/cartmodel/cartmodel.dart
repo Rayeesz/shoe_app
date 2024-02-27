@@ -9,5 +9,8 @@ class CartModel {
   final String price;
   @HiveField(2)
   final String image;
-  CartModel({required this.image, required this.price, required this.text});
+  int Quantity;
+
+  CartModel({required this.image, required this.price, required this.text, this.Quantity=1}
+  );
 }

@@ -134,9 +134,6 @@ class _LoginscreenState extends State<Loginscreen> {
     if (username==password &&username.isNotEmpty ) {
       final shareprfs= await SharedPreferences.getInstance();
         shareprfs.setBool(save_keyname,true);
-
-
-      
       Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (context) => ScreeenHome()));
     } else {

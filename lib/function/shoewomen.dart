@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
-import 'package:travel_app/model/shoewomen.dart';
+import 'package:travel_app/model/shoewomenmodel/shoewomen.dart';
 
 ValueNotifier<List<ShoeWomen>> ShoeWomenlist = ValueNotifier([]);
 Future<void> addWomenshoe(ShoeWomen value) async {

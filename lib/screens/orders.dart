@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:travel_app/function/function.dart';
-import 'package:travel_app/model/model.dart';
+import 'package:travel_app/model/model/model.dart';
 import 'package:travel_app/screens/editorders.dart';
 import 'package:travel_app/widget/screenhome.dart';
 import 'package:travel_app/screens/viewadress.dart';
@@ -29,6 +29,7 @@ class _OrdersState extends State<Orders> {
 
   @override
   Widget build(BuildContext context) {
+    getAllCoustmer();
     searchList();
     return Scaffold(
       appBar: AppBar(
@@ -68,7 +69,10 @@ class _OrdersState extends State<Orders> {
               valueListenable: coustmerlistnotifier,
               builder: (BuildContext ctx, List<CoustmerDetils> coustmerlist,
                   Widget? child) {
-                return search.isNotEmpty?searchedList.isEmpty?Center(child: Text('No customer available')):customerbuild(searchedList):customerbuild(coustmerlist);
+                return search.isNotEmpty?searchedList.isEmpty
+                ?Center(child: Text('No customer available'))
+                :customerbuild(searchedList)
+                :customerbuild(coustmerlist);
               },
             ),
           ),

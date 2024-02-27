@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'cartmodel.dart';
+part of 'cartmodel/cartmodel.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator

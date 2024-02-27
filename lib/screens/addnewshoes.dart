@@ -7,9 +7,12 @@ import 'package:image_picker/image_picker.dart';
 
 import 'package:travel_app/function/shoefunction.dart';
 import 'package:travel_app/function/shoewomen.dart';
+import 'package:travel_app/model/shoemen/shoemodel.dart';
 
-import 'package:travel_app/model/shoemodel.dart';
-import 'package:travel_app/model/shoewomen.dart';
+
+
+
+import 'package:travel_app/model/shoewomenmodel/shoewomen.dart';
 
 import 'package:travel_app/widget/screenhome.dart';
 
